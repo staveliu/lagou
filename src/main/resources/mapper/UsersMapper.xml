@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.newer.lagou.mapper.UsersMapper">
+
+    <!--开启二级缓存-->
+    <!--<cache type="com.newer.hospital.util.RedisCache"/>-->
+
+    <resultMap id="result-users" type="Users">
+        <id property="id" column="id" />
+        <result property="email" column="email"/>
+        <result property="name" column="uname"/>
+        <result property="password" column="password"/>
+        <result property="by1" column="by1"/>
+        <result property="by2" column="by2"/>
+        <result property="state" column="state"/>
+        <result property="lastPasswordResetDate" column="lastPasswordResetDate"/>
+        <collection property="authorities" ofType="Authority">
+            <id property="id" column="id" />
+            <result property="name" column="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="findByEmail" resultMap="result-users">
+    select u.id,u.email,u.name uname,u.password,u.by1,u.by2,u.lastPasswordResetDate,au.id,au.name,state
+    from users u,authority au,user_authority ua
+    where u.email=#{email} and u.id = ua.USER_ID and ua.AUTHORITY_ID = au.id
+  </select>
+</mapper>

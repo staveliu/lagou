@@ -1,0 +1,58 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/lagou?serverTimezone=Asia/Shanghai&useSSL=false&characterEncoding=utf8
+    username: root
+    password: 153007lwj
+  mail:
+    host: smtp.qq.com
+    username: 793863973
+    password: ranohacdckuubdgb
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+  devtools:
+    restart:
+      enabled: true
+  jackson:
+
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+    serialization:
+      indent_output: true
+mybatis:
+
+  type-aliases-package: com.newer.lagou.domain
+  configuration:
+
+    map-underscore-to-camel-case: true
+  mapper-locations: classpath:mapper/*.xml
+server:
+  port: 8086
+  servlet:
+    context-path:
+
+logging:
+  level:
+    com.newer.hospital.mapper: debug
+    org.springframework.security: info
+jwt:
+  #请求header所携带token的属性名
+  header: Authorization
+  #用户自定义的口令
+  secret: mySecret
+  #失效时间
+  expiration: 604800
+  #承载字符串
+  tokenHead: Bearer
+  route:
+    authentication:
+      #token授权url
+      path: /auth
+      #刷新token的url
+      refresh: /refresh
