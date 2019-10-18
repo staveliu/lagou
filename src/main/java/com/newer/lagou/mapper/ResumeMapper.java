@@ -5,6 +5,6 @@ import com.newer.lagou.domain.Resume;
 
 public interface ResumeMapper {
 
-    Resume findResume(id)
+    Resume findResume(int id);
 
 }

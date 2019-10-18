@@ -24,7 +24,7 @@
     </resultMap>
 
     <select id="findByEmail" resultMap="result-users">
-    select u.Accountid,u.email,u.name uname,u.password,u.by1,u.by2,u.lastPasswordResetDate,au.id,au.name,state
+    select u.id,u.email,u.name uname,u.password,u.by1,u.by2,u.lastPasswordResetDate,au.id,au.name,state
     from users u,authority au,user_authority ua
     where u.email=#{email} and u.id = ua.USER_ID and ua.AUTHORITY_ID = au.id
   </select>
