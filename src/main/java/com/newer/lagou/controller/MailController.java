@@ -6,7 +6,10 @@ import com.newer.lagou.domain.AuthorityCode;
 import com.newer.lagou.domain.Users;
 import com.newer.lagou.service.AuthorityCodeService;
 import com.newer.lagou.service.MailService;
+import com.newer.lagou.util.HttpUtils;
 import org.apache.catalina.User;
+import org.apache.http.HttpResponse;
+import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -16,7 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.bouncycastle.util.encoders.Base64;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -120,6 +127,46 @@ public class MailController {
         return ResponseEntity.ok(jsonObject.toString());
     }
 
+    @GetMapping("auth/wxqrcode")
+    public ResponseEntity<?> wxqrcode(){
+        JsonObject jsonObject = new JsonObject();
+        String code = genRandomNum();
+        System.out.println(code);
+        jsonObject.addProperty("status",true);
+        jsonObject.addProperty("message","成功获取");
+        jsonObject.addProperty("url","http://lagou.bjwch.net.cn/wxapi.php?code="+code);
+        jsonObject.addProperty("code",code);
+        return ResponseEntity.ok(jsonObject.toString());
+    }
+    @GetMapping("auth/wxauth")
+    public ResponseEntity<?> wxauth(@RequestParam("code") String code){
+        JsonObject jsonObject = new JsonObject();
+        String host = "http://lagou.bjwch.net.cn/";
+        String path = "wx_poll.php";
+        String method = "GET";
+        Map<String, String> headers = new HashMap<String, String>();
+        Map<String, String> querys = new HashMap<String, String>();
+        querys.put("verify", code);
+        System.out.println(code);
+
+        try {
+            HttpResponse resp = HttpUtils.doGet(host, path, method, headers, querys);
+            JsonObject retJson;
+            String body =EntityUtils.toString(resp.getEntity());
+            System.out.println(body);
+            retJson = new Gson().fromJson(body,JsonObject.class);
+            if (!retJson.has("status")){
+                jsonObject.addProperty("status",true);
+            }else{
+                jsonObject.addProperty("status",false);
+            }
+            //获取response的body
+            //System.out.println(EntityUtils.toString(response.getEntity()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return ResponseEntity.ok(jsonObject.toString());
+    }
     @GetMapping("auth/role")
     public ResponseEntity<?> userAuth(Users user ){
         System.out.println("xdt");
