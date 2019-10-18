@@ -17,11 +17,17 @@ public interface UsersMapper {
     @Select("select * from users")
     List<Users> findAll();
 
+    @Select("select * from users where by1=#{openid}")
+    Users findByOpenid(String openid);
+
     @Update("update users set state=#{state} where email=#{email}")
     int changeState(@Param("state") int state, @Param("email") String email);
 
     @Insert("insert into users(email) values(#{email})")
     int addUser(String email);
+
+    @Insert("insert into users(email,password,state,name,by1,by2) values(#{email},#{password},1,#{name},#{openid},#{password_pre})")
+    int addUserWechat(String email,String password,String name,String openid,String password_pre);
 
     @Select("select * from users where email=#{email}")
     Users findByEmail2(String email);

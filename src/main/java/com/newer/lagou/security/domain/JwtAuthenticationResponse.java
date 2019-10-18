@@ -9,7 +9,7 @@ public class JwtAuthenticationResponse implements Serializable {
 
   public JwtAuthenticationResponse(String token) {
     this.token = token;
-  }
+}
 
   public String getToken() {
     return this.token;

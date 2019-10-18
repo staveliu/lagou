@@ -1,5 +1,6 @@
 package com.newer.lagou.controller;
 
+import com.fasterxml.jackson.databind.ser.Serializers;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.newer.lagou.domain.AuthorityCode;
@@ -138,35 +139,52 @@ public class MailController {
         jsonObject.addProperty("code",code);
         return ResponseEntity.ok(jsonObject.toString());
     }
-    @GetMapping("auth/wxauth")
-    public ResponseEntity<?> wxauth(@RequestParam("code") String code){
-        JsonObject jsonObject = new JsonObject();
-        String host = "http://lagou.bjwch.net.cn/";
-        String path = "wx_poll.php";
-        String method = "GET";
-        Map<String, String> headers = new HashMap<String, String>();
-        Map<String, String> querys = new HashMap<String, String>();
-        querys.put("verify", code);
-        System.out.println(code);
-
-        try {
-            HttpResponse resp = HttpUtils.doGet(host, path, method, headers, querys);
-            JsonObject retJson;
-            String body =EntityUtils.toString(resp.getEntity());
-            System.out.println(body);
-            retJson = new Gson().fromJson(body,JsonObject.class);
-            if (!retJson.has("status")){
-                jsonObject.addProperty("status",true);
-            }else{
-                jsonObject.addProperty("status",false);
-            }
-            //获取response的body
-            //System.out.println(EntityUtils.toString(response.getEntity()));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return ResponseEntity.ok(jsonObject.toString());
-    }
+//    @GetMapping("auth/wxauth")
+//    public ResponseEntity<?> wxauth(@RequestParam("code") String code){
+//        JsonObject jsonObject = new JsonObject();
+//        String host = "http://lagou.bjwch.net.cn/";
+//        String path = "wx_poll.php";
+//        String method = "GET";
+//        Map<String, String> headers = new HashMap<String, String>();
+//        Map<String, String> querys = new HashMap<String, String>();
+//        querys.put("verify", code);
+//        System.out.println(code);
+//
+//        try {
+//            HttpResponse resp = HttpUtils.doGet(host, path, method, headers, querys);
+//            JsonObject retJson;
+//            String body =EntityUtils.toString(resp.getEntity());
+//            System.out.println(body);
+//            retJson = new Gson().fromJson(body,JsonObject.class);
+//            if (!retJson.has("status")){
+//                jsonObject.addProperty("status",true);
+//                String email = new String(Base64.encode(retJson.get("nickname").getAsString().getBytes()))+"@wechat.auth";
+//
+//                Users user = new Users();
+//                user.setType(0);
+//                user.setEmail(email);
+//                user.setPassword(genRandomNum()+new Date().toString());
+//                user.setBy2(retJson.get("openid").toString());
+//                if (mailService.adduser(user)){
+//                    mailService.addAuthority(user,user.getType());
+//                    jsonObject.addProperty("type","new");
+//
+//                }else{
+//
+//                }
+//
+//
+//                jsonObject.addProperty("status",true);
+//            }else{
+//                jsonObject.addProperty("status",false);
+//            }
+//            //获取response的body
+//            //System.out.println(EntityUtils.toString(response.getEntity()));
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        return ResponseEntity.ok(jsonObject.toString());
+//    }
     @GetMapping("auth/role")
     public ResponseEntity<?> userAuth(Users user ){
         System.out.println("xdt");

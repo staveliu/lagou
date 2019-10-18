@@ -49,12 +49,12 @@ public class MailService {
      * @param title 标题
      * @param templateName 模版名
      */
+
     public void send(String verifyCode,String password, String title, String templateName){
         JsonObject jsonObject = new Gson().fromJson(new String(Base64.decode(verifyCode)),JsonObject.class);
         if (!isExistEmail(jsonObject.get("email").getAsString())){
             userMapper.addUser(jsonObject.get("email").getAsString());
             userMapper.changePassword(passwordEncoder.encode(password),jsonObject.get("email").getAsString());
-
         }
         MimeMessage mimeMessage=javaMailSender.createMimeMessage();
         try {
@@ -88,6 +88,14 @@ public class MailService {
         }
     }
 
+    public boolean adduser(Users user){
+        if (!isExistEmail(user.getEmail())){
+            userMapper.addUserWechat(user.getEmail(),passwordEncoder.encode(user.getPassword()),user.getName(),user.getBy1(),user.getBy2());
+            return true;
+        }else{
+            return false;
+        }
+    }
     //是否已存在数据库
     public boolean isExistEmail(String email){
         System.out.println(email);
@@ -126,6 +134,9 @@ public class MailService {
     public void addAuthority(Users user,int type){
         Users user2=userMapper.findByEmail2(user.getEmail());
         userMapper.addUserAuthority(user2.getId(),type);
+    }
+    public Users findByOpenid(String openid){
+        return userMapper.findByOpenid(openid);
     }
 
     public Integer userAuth(String email){
