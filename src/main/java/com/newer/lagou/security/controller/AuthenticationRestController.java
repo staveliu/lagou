@@ -109,6 +109,7 @@ public class AuthenticationRestController {
         user.setEmail(email);
         user.setPassword(new String(Base64.encode((MailController.genRandomNum()+new Date().toString()).getBytes())));
         user.setBy1(retJson.get("openid").getAsString());
+        user.setName(retJson.get("nickname").getAsString());
         user.setBy2(user.getPassword());
         if (mailService.adduser(user)){
           mailService.addAuthority(user,user.getType());
@@ -119,6 +120,7 @@ public class AuthenticationRestController {
           // Reload password post-security so we can generate the token
           final UserDetails userDetails = userDetailsService.loadUserByUsername(user.getEmail());
           final String token = jwtTokenUtil.generateToken(userDetails);
+          jsonObject.addProperty("email",user.getEmail());
           jsonObject.addProperty("token",token);
           // Return the token
         }else{
@@ -128,6 +130,7 @@ public class AuthenticationRestController {
           // Reload password post-security so we can generate the token
           final UserDetails userDetails = userDetailsService.loadUserByUsername(users.getEmail());
           final String token = jwtTokenUtil.generateToken(userDetails);
+          jsonObject.addProperty("email",users.getEmail());
           jsonObject.addProperty("token",token);
         }
 
