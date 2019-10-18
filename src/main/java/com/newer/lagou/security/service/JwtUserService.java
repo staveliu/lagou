@@ -18,8 +18,11 @@ public class JwtUserService implements UserDetailsService {
     private UsersMapper usersMapper;
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        Users users=usersMapper.findByEmail(email);
+        System.out.println(11);
         System.out.println(email);
+        Users users=usersMapper.findByEmail(email);
+        System.out.println(55);
+
         System.out.println(users);
         if(users==null){
             throw new UsernameNotFoundException("用户名不存在！");

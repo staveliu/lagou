@@ -97,7 +97,10 @@ public class MailController {
         JsonObject jsonVerify;
         jsonVerify = new Gson().fromJson(new String(Base64.decode(verify)),JsonObject.class);
         String email = jsonVerify.get("email").getAsString();
+
+
         String code = jsonVerify.get("code").getAsString();
+        System.out.println(email+"ee1e1e==="+code);
         System.out.println(email+"====="+code);
         AuthorityCode authorityCode = authorityCodeService.verify(email,code);
         if (authorityCode==null){
@@ -119,7 +122,9 @@ public class MailController {
 
     @GetMapping("auth/role")
     public ResponseEntity<?> userAuth(Users user ){
+        System.out.println("xdt");
         System.out.println(user);
+
         return ResponseEntity.ok(mailService.userAuth(user.getEmail()));
     }
 }

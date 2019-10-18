@@ -130,8 +130,8 @@ public class MailService {
 
     public Integer userAuth(String email){
         Users users=userMapper.findByEmail(email);
-        System.out.println(users);
-        if("ROLE_JOBHUNTER".equals(users.getAuthority().get(0).getName())){
+
+        if("ROLE_JOBHUNTER".equals(users.getAuthority().get(0).getName().toString())){
             return 1;
         }else {
             if(users.getState()==1){
