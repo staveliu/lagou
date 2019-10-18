@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public class Resume implements Serializable {
 
-    private int resumeid;
-    private int accountid;
+    private Integer resumeid;
+    private Integer accountid;
     private String name;
     private String resumename;
     private String img;
