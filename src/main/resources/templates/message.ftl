@@ -31,7 +31,7 @@
 <div>
     <h2>您的邮件(${verifyMail.email})</h2>
     <p>您好，感谢您的注册，这是一封验证邮件，请点击下面的链接完成注册！</p>
-    <a href="http://localhost/lagou/zhuce.html?verify=${verifyMail.verifyCode}" >点我完成注册</a>
+    <a href="http://lagou.stave.tech/zhuce.html?verify=${verifyMail.verifyCode}" >点我完成注册</a>
 </div>
 </body>
 
