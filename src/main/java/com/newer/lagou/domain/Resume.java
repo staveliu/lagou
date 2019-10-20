@@ -10,7 +10,7 @@ public class Resume implements Serializable {
     private String resumename;//简历名
     private String img;//头像
     private String sex;//性别
-    private String Degree;//学历
+    private String degree;//学历
     private String mobile;//手机号
     private String email;//联系邮件
     private String state;//目前状态
@@ -71,11 +71,11 @@ public class Resume implements Serializable {
     }
 
     public String getDegree() {
-        return Degree;
+        return degree;
     }
 
     public void setDegree(String degree) {
-        Degree = degree;
+        this.degree = degree;
     }
 
     public String getMobile() {
@@ -164,5 +164,28 @@ public class Resume implements Serializable {
 
     public void setDescribe(String describe) {
         this.describe = describe;
+    }
+
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "resumeid=" + resumeid +
+                ", accountid=" + accountid +
+                ", name='" + name + '\'' +
+                ", resumename='" + resumename + '\'' +
+                ", img='" + img + '\'' +
+                ", sex='" + sex + '\'' +
+                ", degree='" + degree + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", email='" + email + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", worktype='" + worktype + '\'' +
+                ", expectpositioon='" + expectpositioon + '\'' +
+                ", money='" + money + '\'' +
+                ", datetime='" + datetime + '\'' +
+                ", exp='" + exp + '\'' +
+                ", describe='" + describe + '\'' +
+                '}';
     }
 }

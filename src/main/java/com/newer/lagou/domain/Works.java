@@ -2,7 +2,7 @@ package com.newer.lagou.domain;
 
 import java.io.Serializable;
 
-public class works implements Serializable {
+public class Works implements Serializable {
     private Integer resumeid; //简历id
     private Integer id;//主键id
     private String link; //作品id

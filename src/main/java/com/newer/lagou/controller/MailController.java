@@ -187,7 +187,6 @@ public class MailController {
 //    }
     @GetMapping("auth/role")
     public ResponseEntity<?> userAuth(Users user ){
-        System.out.println("xdt");
         System.out.println(user);
 
         return ResponseEntity.ok(mailService.userAuth(user.getEmail()));

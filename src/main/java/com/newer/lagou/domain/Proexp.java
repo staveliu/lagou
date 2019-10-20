@@ -3,7 +3,7 @@ package com.newer.lagou.domain;
 import java.io.Serializable;
 
 
-public class proexp implements Serializable {
+public class Proexp implements Serializable {
     private Integer proid;
     private String name; //项目名
     private Integer resumeid;//简历id

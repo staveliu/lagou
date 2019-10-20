@@ -3,7 +3,7 @@ package com.newer.lagou.domain;
 import java.io.Serializable;
 
 
-public class workexp implements Serializable {
+public class Workexp implements Serializable {
     //工作经验表
     private Integer workexpid;//主键
     private Integer Resumeid;//简历表
