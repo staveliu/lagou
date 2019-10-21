@@ -39,6 +39,10 @@ public class ResumeService {
         return resumeMapper.findResumeId(accountid);
     }
 
+    public int updateExpect(int accountid,String city,String worktype,String expectposition,String money){
+        return resumeMapper.updateExpect(city,worktype,expectposition,money,accountid);
+    }
+
 
 
 

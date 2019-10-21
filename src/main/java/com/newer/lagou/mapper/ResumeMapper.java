@@ -47,6 +47,9 @@ public interface ResumeMapper {
     Resume findByAccountid(@Param("accountid")int accountid);
 
 
+    //修改期望工作
+    @Update("update resume set city=#{city},worktype=#{worktype},expectposition=#{expectposition},money=#{money} where accountid=#{accountid}")
+    int updateExpect(@Param("city")String city,@Param("worktype")String worktype,@Param("expectposition")String expectposition,@Param("money")String money,@Param("accountid")int accountid);
 
 
 

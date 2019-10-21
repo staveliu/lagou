@@ -4,6 +4,8 @@ import com.newer.lagou.domain.Resume;
 import com.newer.lagou.security.JwtTokenUtil;
 import com.newer.lagou.security.domain.JwtUser;
 import com.newer.lagou.service.ResumeService;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -57,6 +59,16 @@ public class ResumeController {
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
         return ResponseEntity.ok(resumeService.updateBasicInfo(name,sex,dergee,mobile,email,state,exp,user.getId())) ;
+    }
+
+    @Update("/updateExpectposit")
+    public ResponseEntity updateExpectposition(@RequestParam("city")String city,@RequestParam("worktype")String worktype,
+                                               @RequestParam("expectposition")String expectposition,@RequestParam("money")String money,
+                                               HttpServletRequest request){
+        String token=request.getHeader(tokenHeader).substring(7);
+        String username=jwtTokenUtil.getUsernameFromToken(token);
+        JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
+        return ResponseEntity.ok(resumeService.updateExpect(user.getId(),city,worktype,expectposition,money));
     }
 
 }
