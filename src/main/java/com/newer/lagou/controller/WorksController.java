@@ -48,7 +48,8 @@ public class WorksController {
         String token=request.getHeader(tokenHeader).substring(7);
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
-        return ResponseEntity.ok(worksSerivce.addWorks(user.getId(),link,describe));
+        int resumeid=resumeService.findResumeId(user.getId());
+        return ResponseEntity.ok(worksSerivce.addWorks(resumeid,link,describe));
     }
 
     @DeleteMapping("/delworks")
