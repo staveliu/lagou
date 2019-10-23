@@ -20,7 +20,7 @@ public interface ResumeMapper {
     int addResume(@Param("accountid")int accountid);
 
     //修改基本信息
-    @Update("update resume set name=#{name},sex=#{sex},degree=#{degree},exp=#{exp},mobile=#{mobile},email=#{email},state={state} where resumeid=#{resumeid}")
+    @Update("update resume set name=#{name},sex=#{sex},degree=#{degree},exp=#{exp},mobile=#{mobile},email=#{email},state=#{state} where accountid=#{accountid}")
     int updateBasicInfo(@Param("name")String name,
                         @Param("sex")String sex,
                         @Param("degree")String degree,
@@ -28,10 +28,10 @@ public interface ResumeMapper {
                         @Param("mobile")String mobile,
                         @Param("email")String email,
                         @Param("state")String state,
-                        @Param("resumeid")int resumeid);
+                        @Param("accountid")int accountid);
 
     //查找简历id
-    @Select("select resumeid from where accountid=#{accountid}")
+    @Select("select resumeid from resume where accountid=#{accountid}")
     int findResumeId(@Param("accountid")int accountid);
 
     //查询简历数
@@ -51,9 +51,13 @@ public interface ResumeMapper {
     @Update("update resume set city=#{city},worktype=#{worktype},expectposition=#{expectposition},money=#{money} where accountid=#{accountid}")
     int updateExpect(@Param("city")String city,@Param("worktype")String worktype,@Param("expectposition")String expectposition,@Param("money")String money,@Param("accountid")int accountid);
 
+    //自我评价
+    @Update("update resume set `describe`=#{describe} where accountid=#{accountid}")
+    int updatezwjs(@Param("describe")String describe,@Param("accountid")int accountid);
 
-
-
+    //简历名
+    @Update("update resume set resumename=#{resumename} where accountid=#{accountid}")
+    int updateRname(@Param("resumename")String resumename,@Param("accountid")int accountid);
 
 
 

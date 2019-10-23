@@ -13,11 +13,11 @@ public interface WorkexpMapper {
     List<Workexp> findWorkexp(@Param("resumeid")int resumeid);
 
 
-    @Insert("insert into work values(null,#{resumeid},#{companyname},#{position},#{startyear},#{startmonth},#{endyear},#{endmonth})")
+    @Insert("insert into workexp values(null,#{resumeid},#{companyname},#{position},#{startyear},#{startmonth},#{endyear},#{endmonth})")
     int addWorkexp(@Param("companyname")String companyname, @Param("position")String position,
                    @Param("startyear")String startyear, @Param("startmonth")String startmonth,
                    @Param("endyear")String endyear, @Param("endmonth")String endmonth,
-                   @Param("resumeid")String resumeid);
+                   @Param("resumeid")int resumeid);
 
     @Delete("delete from workexp where workexpid=#{workexpid}")
     int delWorkexp(@Param("workexpid")int workexpid);

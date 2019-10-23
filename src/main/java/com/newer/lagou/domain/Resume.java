@@ -16,7 +16,7 @@ public class Resume implements Serializable {
     private String state;//目前状态
     private String city;//期望城市
     private String worktype;//期望工作类型
-    private String expectpositioon;//期望职位
+    private String expectposition;//期望职位
     private String money;//期望工资
     private String datetime;//简历最后更新时间
     private String exp;//工作时间
@@ -126,12 +126,12 @@ public class Resume implements Serializable {
         this.worktype = worktype;
     }
 
-    public String getExpectpositioon() {
-        return expectpositioon;
+    public String getExpectposition() {
+        return expectposition;
     }
 
-    public void setExpectpositioon(String expectpositioon) {
-        this.expectpositioon = expectpositioon;
+    public void setExpectposition(String expectposition) {
+        this.expectposition = expectposition;
     }
 
     public String getMoney() {
@@ -181,7 +181,7 @@ public class Resume implements Serializable {
                 ", state='" + state + '\'' +
                 ", city='" + city + '\'' +
                 ", worktype='" + worktype + '\'' +
-                ", expectpositioon='" + expectpositioon + '\'' +
+                ", expectpositioon='" + expectposition + '\'' +
                 ", money='" + money + '\'' +
                 ", datetime='" + datetime + '\'' +
                 ", exp='" + exp + '\'' +

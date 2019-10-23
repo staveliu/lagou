@@ -18,8 +18,8 @@ public class ProexpService {
     }
 
     public int addProexp(int resumeid,String proname,String position,String describe,String startyear,String startmonth,
-            String endyaer,String endmonth){
-        return proexpMapper.addproexp(resumeid,proname,position,describe,startyear,startmonth,endyaer,endmonth);
+            String endyear,String endmonth){
+        return proexpMapper.addproexp(resumeid,proname,position,describe,startyear,startmonth,endyear,endmonth);
     }
 
     public int delProexp(int proid){

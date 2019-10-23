@@ -183,7 +183,6 @@ public class AuthenticationRestController {
 
     try {
       UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(username, password);
-      System.out.println("77");
       authenticationManager.authenticate(usernamePasswordAuthenticationToken);
       System.out.println("jiaoyantongguo");
     } catch (DisabledException e) {
