@@ -42,7 +42,6 @@ public class ResumeController {
         if(num>0){
 
             Resume resume=resumeService.findByAccountid(user.getId());
-            System.out.println("查找====="+resume);
            return ResponseEntity.ok(resume);
         }else {
             int row=resumeService.addResume(user.getId());
@@ -51,18 +50,21 @@ public class ResumeController {
     }
     @PostMapping("/updateBasicInfo")
     public ResponseEntity<?> updateBasicInfo(@RequestParam("name")String name,@RequestParam("sex")String sex,
-                                             @RequestParam("dergee")String dergee,
+                                             @RequestParam("degree")String dergee,
                                              @RequestParam("mobile")String mobile,@RequestParam("email")String email,
                                              @RequestParam("state")String state,@RequestParam("exp")String exp,
                                              HttpServletRequest request){
+        System.out.println("信息修改");
         String token=request.getHeader(tokenHeader).substring(7);
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
-        return ResponseEntity.ok(resumeService.updateBasicInfo(name,sex,dergee,mobile,email,state,exp,user.getId())) ;
+        resumeService.updateBasicInfo(name,sex,dergee,mobile,email,state,exp,user.getId());
+
+        return ResponseEntity.ok(resumeService.findByAccountid(user.getId())) ;
     }
 
-    @Update("/updateExpectposit")
-    public ResponseEntity updateExpectposition(@RequestParam("city")String city,@RequestParam("worktype")String worktype,
+    @PostMapping("/updateExpectposit")
+    public ResponseEntity<?> updateExpectposition(@RequestParam("city")String city,@RequestParam("worktype")String worktype,
                                                @RequestParam("expectposition")String expectposition,@RequestParam("money")String money,
                                                HttpServletRequest request){
         String token=request.getHeader(tokenHeader).substring(7);
@@ -70,5 +72,25 @@ public class ResumeController {
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
         return ResponseEntity.ok(resumeService.updateExpect(user.getId(),city,worktype,expectposition,money));
     }
+//更新自我介绍
+    @PostMapping("/updatezwms")
+    public ResponseEntity<?> updatezwms(@RequestParam("describe")String describe,
+                                               HttpServletRequest request){
+        String token=request.getHeader(tokenHeader).substring(7);
+        String username=jwtTokenUtil.getUsernameFromToken(token);
+        JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
+        return ResponseEntity.ok(resumeService.updatezwms(user.getId(),describe));
+    }
+
+    //简历名
+    @PostMapping("/resumename")
+    public ResponseEntity<?> updateresumename(@RequestParam("resumename")String resumename,
+                                        HttpServletRequest request){
+        String token=request.getHeader(tokenHeader).substring(7);
+        String username=jwtTokenUtil.getUsernameFromToken(token);
+        JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
+        return ResponseEntity.ok(resumeService.updateRname(user.getId(),resumename));
+    }
+
 
 }

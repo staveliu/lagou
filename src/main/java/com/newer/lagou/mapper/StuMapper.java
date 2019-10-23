@@ -12,7 +12,7 @@ import java.util.List;
 public interface StuMapper {
 
     //添加教育背景
-    @Insert("insert into stu values(#{resumeid},#{school},#{degree},#{major},#{startyear},#{endyear})")
+    @Insert("insert into stu values(null,#{resumeid},#{school},#{degree},#{major},#{startyear},#{endyear})")
     int addSut(@Param("resumeid")int resumeid,@Param("school")String school,@Param("degree")String degree,@Param("major")String major,@Param("startyear")String startyear,@Param("endyear")String endyear);
 
     //删除教育背景

@@ -20,11 +20,11 @@ public class ResumeService {
     public int updateBasicInfo(String name,
                             String sex, String dergee, String mobile,
                             String email, String state,
-                            String exp,int resumeid
+                            String exp,int accountid
                             ){
         Date datetime=new Date();
-        resumeMapper.updatetime(datetime,resumeid);
-        return resumeMapper.updateBasicInfo(name,sex,dergee,exp,mobile,email,state,resumeid);
+        resumeMapper.updatetime(datetime,accountid);
+        return resumeMapper.updateBasicInfo(name,sex,dergee,exp,mobile,email,state,accountid);
     }
 
     public Resume findByAccountid(int accountid){
@@ -43,7 +43,14 @@ public class ResumeService {
         return resumeMapper.updateExpect(city,worktype,expectposition,money,accountid);
     }
 
+    public int updatezwms(int accountid,String describ){
+        return resumeMapper.updatezwjs(describ,accountid);
+    }
 
+    //简历名
+    public int updateRname(int accountid,String resumename){
+        return resumeMapper.updateRname(resumename,accountid);
+    }
 
 
 }

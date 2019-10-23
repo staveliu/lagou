@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 public interface WorksMapper {
-    @Insert("insert into works values(null,#{resumeid},#{link},#describe)")
+    @Insert("insert into works values(null,#{resumeid},#{link},#{describe})")
     int addWorks(@Param("resumeid")int resumeid,@Param("link")String link,@Param("describe")String describe);
 
     @Select("select * from works where resumeid=#{resumeid}")

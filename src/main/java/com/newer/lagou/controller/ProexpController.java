@@ -44,9 +44,9 @@ public class ProexpController {
     }
 
     @PostMapping("/addproexp")
-    public ResponseEntity<?> addProexp(@Param("proname")String proname,@Param("position")String position,@Param("describe")String describe,
-                                       @Param("startyear")String startyear,@Param("startmonth")String startmonth,
-                                       @Param("endyear")String endyear,@Param("endmonth")String endmonth,HttpServletRequest request){
+    public ResponseEntity<?> addProexp(@RequestParam("proname")String proname,@RequestParam("position")String position,@RequestParam("describe")String describe,
+                                       @RequestParam("startyear")String startyear,@RequestParam("startmonth")String startmonth,
+                                       @RequestParam("endyear")String endyear,@RequestParam("endmonth")String endmonth,HttpServletRequest request){
         String token=request.getHeader(tokenHeader).substring(7);
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);

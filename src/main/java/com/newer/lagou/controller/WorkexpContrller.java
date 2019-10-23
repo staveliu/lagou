@@ -42,7 +42,7 @@ public class WorkexpContrller {
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
         int resumeid=resumeService.findResumeId(user.getId());
-        return ResponseEntity.ok(workexpService.fendWorkexp(resumeid));
+        return ResponseEntity.ok(workexpService.findWorkexp(resumeid));
     }
 
     @PostMapping("/addworkexp")
@@ -60,4 +60,6 @@ public class WorkexpContrller {
     public ResponseEntity delWorkexp(@RequestParam("workexpid")int workexpid){
         return ResponseEntity.ok(workexpService.delWorkexp(workexpid));
     }
+
+
 }

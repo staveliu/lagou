@@ -10,10 +10,10 @@ import java.util.List;
 
 public interface ProexpMapper {
     @Insert("insert into proexp values(null,#{resumeid},#{proname},#{position},#{describe},#{startyear},#{startmonth}," +
-            "#{endyaer},#{endmonth})")
+            "#{endyear},#{endmonth})")
     int addproexp(@Param("resumeid")int resumeid,@Param("proname")String proname,
                   @Param("position")String position,@Param("describe")String describe,
-                  @Param("startyaer")String startyear,@Param("startmonth")String startmonth,
+                  @Param("startyear")String startyear,@Param("startmonth")String startmonth,
                   @Param("endyear")String endyear,@Param("endmonth")String endmonth);
 
     @Select("select * from proexp where resumeid=#{resumeid}")
