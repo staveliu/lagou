@@ -1,6 +1,7 @@
 package com.newer.lagou.controller;
 
 import com.newer.lagou.domain.Resume;
+import com.newer.lagou.domain.Workexp;
 import com.newer.lagou.security.JwtTokenUtil;
 import com.newer.lagou.security.domain.JwtUser;
 import com.newer.lagou.service.ResumeService;
@@ -34,6 +35,8 @@ public class ResumeController {
     @Autowired
     @Qualifier("jwtUserService")
     private UserDetailsService userDetailsService;
+
+
 
     @GetMapping("/findResume")
     public ResponseEntity<?> findResume(HttpServletRequest request){
