@@ -1,2 +1,2 @@
-## lagou
-## A recruitment website
+## Lagou 
+## 拉勾招聘网项目
