@@ -48,6 +48,7 @@ public class WorksController {
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
         int resumeid=resumeService.findResumeId(user.getId());
+        resumeService.updateTime(resumeid);
         return ResponseEntity.ok(worksSerivce.addWorks(resumeid,link,describe));
     }
 

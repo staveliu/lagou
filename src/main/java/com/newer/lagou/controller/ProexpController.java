@@ -51,7 +51,7 @@ public class ProexpController {
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
         int resumeid=resumeService.findResumeId(user.getId());
-
+        resumeService.updateTime(resumeid);
         return ResponseEntity.ok(proexpService.addProexp(resumeid,proname,position,describe,startyear,startmonth,endmonth,endmonth));
     }
 

@@ -6,6 +6,7 @@ import com.newer.lagou.security.JwtTokenUtil;
 import com.newer.lagou.security.domain.JwtUser;
 import com.newer.lagou.service.ResumeService;
 
+import com.newer.lagou.util.UploadImg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -16,8 +17,7 @@ import sun.misc.BASE64Decoder;
 
 import javax.servlet.http.HttpServletRequest;
 
-import java.io.FileOutputStream;
-import java.io.OutputStream;
+import java.io.*;
 
 @RestController
 @RequestMapping("/resume")
@@ -51,7 +51,7 @@ public class ResumeController {
            return ResponseEntity.ok(resume);
         }else {
             int row=resumeService.addResume(user.getId());
-            return ResponseEntity.ok(resumeService.findByAccountid(user.getId()));
+            return ResponseEntity.ok(null);
         }
     }
 
@@ -68,8 +68,18 @@ public class ResumeController {
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
         resumeService.updateBasicInfo(name,sex,dergee,mobile,email,state,exp,user.getId());
         //头像上传
+        int fileName=resumeService.findResumeId(user.getId());
+        //保存的绝对路径
+        String path="F:/nginx-1.14.0/html/lagou/style/images/resume/"+fileName+".jpg";
+        if(generateImage(img.substring(23,img.length()),path)){
 
-
+            //写入数据库相对路径
+            resumeService.updateImg(fileName,"style/images/resume/"+fileName+".jpg");
+            //上传文件到服务器端
+            UploadImg uploadImg=new UploadImg();
+            File file=new File(path);
+            uploadImg.uploadFile(file,fileName+".jpg");
+        }
 
         return ResponseEntity.ok(resumeService.findByAccountid(user.getId())) ;
     }

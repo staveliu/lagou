@@ -39,8 +39,8 @@ public interface ResumeMapper {
     int findResumeNum(@Param("accountid")int accountid);
 
     //简历更新时间
-    @Update("update resume set datetime=#{datetime} where resumeid=#{resumeid}")
-    int updatetime(@Param("datetime")Date datetime,@Param("resumeid")int resumeid);
+    @Update("update resume set datetime=now() where resumeid=#{resumeid}")
+    int updatetime(@Param("resumeid")int resumeid);
 
     //查简历
     @Select("select * from resume where accountid=#{accountid}")
@@ -60,5 +60,7 @@ public interface ResumeMapper {
     int updateRname(@Param("resumename")String resumename,@Param("accountid")int accountid);
 
 
+    @Update("update resume set img=#{img} where resumeid=#{resumeid}")
+    int updateImg(@Param("img")String img,@Param("resumeid")int resumeid);
 
 }

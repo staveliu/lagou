@@ -15,6 +15,6 @@ public interface WorksMapper {
     @Select("select * from works where resumeid=#{resumeid}")
     List<Works> findWorks(@Param("resumeid")int resumeid);
 
-    @Delete("delete from wroks where id=#{id}")
+    @Delete("delete from works where id=#{id}")
     int delWorks(@Param("id")int id);
 }

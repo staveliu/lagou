@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Stu implements Serializable {
+    private Integer stuid;
     private Integer resumeid;
     private String school;
     private String degree;
@@ -57,5 +58,13 @@ public class Stu implements Serializable {
 
     public void setEndyear(String endyear) {
         this.endyear = endyear;
+    }
+
+    public Integer getStuid() {
+        return stuid;
+    }
+
+    public void setStuid(Integer stuid) {
+        this.stuid = stuid;
     }
 }

@@ -22,8 +22,8 @@ public class ResumeService {
                             String email, String state,
                             String exp,int accountid
                             ){
-        Date datetime=new Date();
-        resumeMapper.updatetime(datetime,accountid);
+
+        resumeMapper.updatetime(accountid);
         return resumeMapper.updateBasicInfo(name,sex,dergee,exp,mobile,email,state,accountid);
     }
 
@@ -52,5 +52,14 @@ public class ResumeService {
         return resumeMapper.updateRname(resumename,accountid);
     }
 
+    //上传头像
+    public int updateImg(int resumeid,String img){
+        return resumeMapper.updateImg(img,resumeid);
+    }
+
+    //简历更新时间
+    public int updateTime(int resumeid){
+        return resumeMapper.updatetime(resumeid);
+    }
 
 }
