@@ -1,16 +1,12 @@
 package com.newer.lagou.controller;
 
-import com.fasterxml.jackson.databind.ser.Serializers;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.newer.lagou.domain.AuthorityCode;
 import com.newer.lagou.domain.Users;
 import com.newer.lagou.service.AuthorityCodeService;
 import com.newer.lagou.service.MailService;
-import com.newer.lagou.util.HttpUtils;
-import org.apache.catalina.User;
-import org.apache.http.HttpResponse;
-import org.apache.http.util.EntityUtils;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -20,11 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.bouncycastle.util.encoders.Base64;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
 
 /**

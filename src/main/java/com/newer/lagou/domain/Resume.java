@@ -3,24 +3,24 @@ package com.newer.lagou.domain;
 import java.io.Serializable;
 
 public class Resume implements Serializable {
-
-    private Integer resumeid;
-    private Integer accountid;
-    private String name;
-    private String resumename;
-    private String img;
-    private String sex;
-    private String Degree;
-    private String mobile;
-    private String email;
-    private String statel;
-    private String city;
-    private String worktype;
-    private String expectpositioon;
-    private String money;
-    private String datetime;
-    private String exp;
-    private String describe;
+    //简历表
+    private Integer resumeid;//简历表id
+    private Integer accountid;//用户id
+    private String name;//姓名
+    private String resumename;//简历名
+    private String img;//头像
+    private String sex;//性别
+    private String degree;//学历
+    private String mobile;//手机号
+    private String email;//联系邮件
+    private String state;//目前状态
+    private String city;//期望城市
+    private String worktype;//期望工作类型
+    private String expectposition;//期望职位
+    private String money;//期望工资
+    private String datetime;//简历最后更新时间
+    private String exp;//工作时间
+    private String describe;//自我描述
 
     public int getResumeid() {
         return resumeid;
@@ -71,11 +71,11 @@ public class Resume implements Serializable {
     }
 
     public String getDegree() {
-        return Degree;
+        return degree;
     }
 
     public void setDegree(String degree) {
-        Degree = degree;
+        this.degree = degree;
     }
 
     public String getMobile() {
@@ -94,12 +94,20 @@ public class Resume implements Serializable {
         this.email = email;
     }
 
-    public String getStatel() {
-        return statel;
+    public void setResumeid(Integer resumeid) {
+        this.resumeid = resumeid;
     }
 
-    public void setStatel(String statel) {
-        this.statel = statel;
+    public void setAccountid(Integer accountid) {
+        this.accountid = accountid;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 
     public String getCity() {
@@ -118,12 +126,12 @@ public class Resume implements Serializable {
         this.worktype = worktype;
     }
 
-    public String getExpectpositioon() {
-        return expectpositioon;
+    public String getExpectposition() {
+        return expectposition;
     }
 
-    public void setExpectpositioon(String expectpositioon) {
-        this.expectpositioon = expectpositioon;
+    public void setExpectposition(String expectposition) {
+        this.expectposition = expectposition;
     }
 
     public String getMoney() {
@@ -156,5 +164,28 @@ public class Resume implements Serializable {
 
     public void setDescribe(String describe) {
         this.describe = describe;
+    }
+
+    @Override
+    public String toString() {
+        return "Resume{" +
+                "resumeid=" + resumeid +
+                ", accountid=" + accountid +
+                ", name='" + name + '\'' +
+                ", resumename='" + resumename + '\'' +
+                ", img='" + img + '\'' +
+                ", sex='" + sex + '\'' +
+                ", degree='" + degree + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", email='" + email + '\'' +
+                ", state='" + state + '\'' +
+                ", city='" + city + '\'' +
+                ", worktype='" + worktype + '\'' +
+                ", expectpositioon='" + expectposition + '\'' +
+                ", money='" + money + '\'' +
+                ", datetime='" + datetime + '\'' +
+                ", exp='" + exp + '\'' +
+                ", describe='" + describe + '\'' +
+                '}';
     }
 }

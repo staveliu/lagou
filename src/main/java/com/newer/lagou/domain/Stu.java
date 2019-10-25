@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class Stu implements Serializable {
+    private Integer stuid;
     private Integer resumeid;
     private String school;
     private String degree;
     private String major;
-    private Date starttime;
-    private Date endtime;
+    private String startyear;
+    private String endyear;
 
     public Integer getResumeid() {
         return resumeid;
@@ -43,19 +44,27 @@ public class Stu implements Serializable {
         this.major = major;
     }
 
-    public Date getStarttime() {
-        return starttime;
+    public String getStartyear() {
+        return startyear;
     }
 
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
+    public void setStartyear(String startyear) {
+        this.startyear = startyear;
     }
 
-    public Date getEndtime() {
-        return endtime;
+    public String getEndyear() {
+        return endyear;
     }
 
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
+    public void setEndyear(String endyear) {
+        this.endyear = endyear;
+    }
+
+    public Integer getStuid() {
+        return stuid;
+    }
+
+    public void setStuid(Integer stuid) {
+        this.stuid = stuid;
     }
 }
