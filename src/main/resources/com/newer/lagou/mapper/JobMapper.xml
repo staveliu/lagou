@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.newer.lagou.mapper.JobMapper">
+
+    <!--开启二级缓存-->
+    <!--<cache type="com.newer.hospital.util.RedisCache"/>-->
+
+    <resultMap id="result-Pinformation" type="Pinformation">
+        <id property="id" column="id" />
+        <result property="positionid" column="positionid"/>
+        <result property="companyid" column="companyid"/>
+        <result property="postname" column="postname"/>
+        <result property="department" column="department"/>
+        <result property="nature" column="nature"/>
+        <result property="salaryMin" column="salaryMin"/>
+        <result property="salaryMax" column="salaryMax"/>
+        <result property="city" column="city"/>
+        <result property="experience" column="experience"/>
+        <result property="degree" column="degree"/>
+        <result property="jobtemptation" column="jobtemptation"/>
+        <result property="details" column="details"/>
+        <result property="address" column="address"/>
+        <result property="pemail" column="pemail"/>
+        <result property="time" column="time"/>
+        <result property="statu" column="statu"/>
+        <association property="company" javaType="com.newer.lagou.domain.Company">
+            <result property="field" column="field"/>
+            <result property="stage" column="stage"/>
+            <result property="csize" column="csize"/>
+            <result property="label" column="label"/>
+            <result property="web" column="web"/>
+        </association>
+        <collection property="founders" ofType="Founders" column="companyid"
+                    fetchType="lazy" select="com.newer.lagou.mapper.FounderMapper.findFounderById">
+
+        </collection>
+    </resultMap>
+
+    <select id="findAllPinformation" resultMap="result-Pinformation">
+        select Positionid positionid,c.companyid,Postname postname,department,nature,salary_min salaryMin,salary_max salaryMax,p.city,Experience experience,Degree degree,Jobtemptation jobtemptation,address,pemail,time,Statu statu,c.field,c.stage,c.csize,c.label
+from pinformation p left join
+cinformation c on p.Companyid=c.companyid
+order by time desc
+    </select>
+</mapper>

@@ -37,4 +37,7 @@ public interface UsersMapper {
 
     @Insert("insert into user_authority values(#{userid},#{auid})")
     int addUserAuthority(@Param("userid")int userid,@Param("auid")int auid);
+
+    @Select("select id from users where email=#{username}")
+    int findUserid(String username);
 }

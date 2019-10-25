@@ -21,9 +21,11 @@ public class JwtUser implements UserDetails {
     private final String by1;
     private final String by2;
     private final boolean enabled;
+    private final Integer state;
+    private final Integer type;//临时使用
 
 
-    public JwtUser(Integer id, String email, String password, boolean enabled, Date lastPasswordResetDate, Collection<? extends GrantedAuthority> authorities, String name, String by1, String by2) {
+    public JwtUser(Integer id, String email, String password, boolean enabled, Date lastPasswordResetDate, Collection<? extends GrantedAuthority> authorities, String name, String by1, String by2,Integer state,Integer type) {
         this.id = id;
         this.email = email;
         this.password = password;
@@ -33,6 +35,20 @@ public class JwtUser implements UserDetails {
         this.name = name;
         this.by1 = by1;
         this.by2 = by2;
+        this.state=state;
+        this.type=type;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public Integer getState() {
+        return state;
+    }
+
+    public Integer getType() {
+        return type;
     }
 
     public Integer getId() {

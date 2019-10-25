@@ -145,11 +145,7 @@ public class MailService {
         if("ROLE_JOBHUNTER".equals(users.getAuthority().get(0).getName().toString())){
             return 1;
         }else {
-            if(users.getState()==1){
-                return 2;
-            }else{
-                return 3;
-            }
+            return users.getState()+1;
         }
     }
 
