@@ -1,21 +1,23 @@
 package com.newer.lagou.mapper;
 
 import com.newer.lagou.domain.Collect;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import com.newer.lagou.domain.Pinformation;
+import org.apache.ibatis.annotations.*;
+
+
+import java.util.List;
 
 public interface CollectMopper {
 
-    @Select("select * from collect where userid=#{userid}")
-    Collect findCollect(@Param("userid")int userid);
+
+    @Select("select * from collect c join pinformation p on c.positionid=p.positionid where userid=#{userid}")
+    List<Pinformation> findPinfotmation(@Param("userid")int userid);
 
     @Insert("intsert into collect valuse(null,#{positionid},#{userid})")
-    int addCollect(@Param("positionid")String positionid,@Param("userid")int userid);
+    int addCollect(@Param("positionid")int positionid,@Param("userid")int userid);
 
-    @Update("update collect set positionid=#{positionid} where userid=#{userid}")
-    int updateCollect(@Param("positionid")String positionid,@Param("userid")int userid);
+    @Delete("delete from collect where  positionid=#{positionid} and userid=#{userid}")
+    int delCollect(@Param("positionid")int positionid,@Param("userid")int userid);
 
 
 }

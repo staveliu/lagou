@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Collect implements Serializable {
     private Integer collectid;
-    private String positionid;
+    private Integer positionid;
     private Integer userid;
 
     public Integer getCollectid() {
@@ -15,11 +15,11 @@ public class Collect implements Serializable {
         this.collectid = collectid;
     }
 
-    public String getPositionid() {
+    public Integer getPositionid() {
         return positionid;
     }
 
-    public void setPositionid(String positionid) {
+    public void setPositionid(Integer positionid) {
         this.positionid = positionid;
     }
 
