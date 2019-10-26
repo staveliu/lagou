@@ -32,4 +32,7 @@ public interface CompanyMapper {
 
     @Select("select * from cinformation where userid=#{userid}")
     Company findByUserid(int userid);
+
+    @Select("select * from cinformation where companyid=#{companyid}")
+    Company findByCompanyid(int companyid);
 }
