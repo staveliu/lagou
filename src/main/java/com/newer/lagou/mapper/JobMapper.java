@@ -10,9 +10,9 @@ import java.util.List;
 @Mapper
 public interface JobMapper {
     //添加pinformation  发布的职位信息
-    @Insert("insert into pinformation(Companyid,pnid,Postname,department,nature,salary_min,city,Experience,Degree,Jobtemptation,address,pemail,Statu,salary_max) values(#{companyid},#{pnid},#{postname}," +
+    @Insert("insert into pinformation(Companyid,pnid,Postname,department,nature,salary_min,city,Experience,Degree,Jobtemptation,address,pemail,Statu,salary_max,details) values(#{companyid},#{pnid},#{postname}," +
             "#{department},#{nature},#{salaryMin},#{city},#{experience},#{degree},#{jobtemptation},#{address}," +
-            "#{pemail},#{statu},#{salaryMax})")
+            "#{pemail},#{statu},#{salaryMax},#{details})")
     int addPinformation(Pinformation pinformation);
 
     //根据职位类别 查找pnid从pname表    数据库表逻辑有待思考..
@@ -26,4 +26,7 @@ public interface JobMapper {
 
     //查找所有的职位信息，并按照时间顺序排列
     List<Pinformation> findAllPinformation();
+
+    //查询单个职位信息 根据positionid
+    Pinformation findPinformationById(int positionid);
 }

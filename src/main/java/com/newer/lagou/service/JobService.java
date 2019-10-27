@@ -29,6 +29,10 @@ public class JobService {
         return jobMapper.findAllPinformationByCompanyid(companyid);
     }
 
+    public Pinformation findPinformationById(int positionid){
+        return jobMapper.findPinformationById(positionid);
+    }
+
     public List<Pinformation> findAllPinformation(){
         return jobMapper.findAllPinformation();
     }

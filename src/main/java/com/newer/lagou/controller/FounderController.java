@@ -6,6 +6,7 @@ import com.newer.lagou.security.JwtTokenUtil;
 import com.newer.lagou.security.domain.JwtUser;
 import com.newer.lagou.service.FounderService;
 import com.newer.lagou.service.MailService;
+import com.newer.lagou.service.MyhomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,6 +35,9 @@ public class FounderController {
     private UserDetailsService userDetailsService;
 
     @Autowired
+    private MyhomeService myhomeService;
+
+    @Autowired
     private MailService mailService;
 
     @PostMapping("/founder/add")
@@ -43,5 +47,14 @@ public class FounderController {
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
         mailService.changeState(user.getEmail(),7);
         return ResponseEntity.ok(founderService.addFounder(founder,username));
+    }
+
+    @GetMapping("/founder/findfounder")
+    public ResponseEntity<?> findFounder(HttpServletRequest request){
+        //获取token
+        String token=request.getHeader(tokenHeader).substring(7);
+        //从token解析出用户名
+        String username=jwtTokenUtil.getUsernameFromToken(token);
+        return ResponseEntity.ok(myhomeService.findFounders(username));
     }
 }

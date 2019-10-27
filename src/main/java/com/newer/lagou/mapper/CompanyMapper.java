@@ -4,6 +4,8 @@ import com.newer.lagou.domain.Company;
 import com.newer.lagou.domain.Stage;
 import org.apache.ibatis.annotations.*;
 
+import java.util.List;
+
 public interface CompanyMapper {
     @Update("update cinformation set label=#{label} where companyid=#{companyid}")
     int changeLabel(@Param("companyid") int companyid, @Param("label") String label);
@@ -33,6 +35,9 @@ public interface CompanyMapper {
     @Select("select * from cinformation where userid=#{userid}")
     Company findByUserid(int userid);
 
-    @Select("select * from cinformation where companyid=#{companyid}")
-    Company findByCompanyid(int companyid);
+    @Select("select * from cinformation where companyid=#{id}")
+    Company findCinformation(int id);
+
+    @Select("select stage,org,institutionid id from iinstitution where companyid=#{companyid}")
+    List<Stage> findByCompanyid(int companyid);
 }
