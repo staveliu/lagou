@@ -3,6 +3,7 @@ package com.newer.lagou.controller;
 
 import com.newer.lagou.domain.Collect;
 import com.newer.lagou.domain.Pinformation;
+import com.newer.lagou.domain.Pinformation1;
 import com.newer.lagou.security.JwtTokenUtil;
 import com.newer.lagou.security.domain.JwtUser;
 import com.newer.lagou.service.CollectService;
@@ -15,7 +16,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -44,7 +44,7 @@ public class CollectController {
         String token=request.getHeader(tokenHeader).substring(7);
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
-        List<Pinformation> pinformations=collectService.findPinformation(user.getId());
+        List<Pinformation1> pinformations=collectService.findPinformation(user.getId());
         return ResponseEntity.ok(pinformations);
     }
     //添加收藏

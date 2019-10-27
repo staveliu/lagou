@@ -1,5 +1,6 @@
 package com.newer.lagou.domain;
 
+import javax.swing.text.Position;
 import java.io.Serializable;
 
 public class Collect implements Serializable {

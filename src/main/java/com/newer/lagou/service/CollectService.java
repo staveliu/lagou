@@ -2,6 +2,7 @@ package com.newer.lagou.service;
 
 import com.newer.lagou.domain.Collect;
 import com.newer.lagou.domain.Pinformation;
+import com.newer.lagou.domain.Pinformation1;
 import com.newer.lagou.mapper.CollectMopper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ public class CollectService {
         return collectMopper.addCollect(positionid,userid);
     }
 
-    public List<Pinformation> findPinformation(int userid){
+    public List<Pinformation1> findPinformation(int userid){
         return collectMopper.findPinfotmation(userid);
     }
 
