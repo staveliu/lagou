@@ -107,6 +107,16 @@ public class CompanyService {
     }
 
 
+    /**
+     * 通過companyid查詢stage
+     * @param companyid
+     * @return
+     */
+    public List<Stage> findByCompanyId(int companyid){
+        return companyMapper.findByCompanyid(companyid);
+    }
+
+
     public static boolean generateImage(String imgStr, String path) {
         if (imgStr == null)
             return false;

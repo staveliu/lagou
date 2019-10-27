@@ -9,10 +9,7 @@ import com.newer.lagou.mapper.UsersMapper;
 import com.newer.lagou.security.JwtTokenUtil;
 import com.newer.lagou.security.domain.JwtAuthenticationResponse;
 import com.newer.lagou.security.domain.JwtUser;
-import com.newer.lagou.service.AuthorityCodeService;
-import com.newer.lagou.service.CompanyService;
-import com.newer.lagou.service.MailService;
-import com.newer.lagou.service.UserService;
+import com.newer.lagou.service.*;
 import org.bouncycastle.util.encoders.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -52,6 +49,9 @@ public class CompanyController {
 
     @Autowired
     private AuthorityCodeService authorityCodeService;
+
+    @Autowired
+    private MyhomeService myhomeService;
 
     @PutMapping("/company/changelabel")
     public ResponseEntity<?> changeLabel(Company company,
@@ -267,6 +267,14 @@ public class CompanyController {
         return ResponseEntity.ok(result);
     }
 
+    @GetMapping("/company/findCinformation")
+    public ResponseEntity<?> findCinformation(HttpServletRequest request){
+        //获取token
+        String token=request.getHeader(tokenHeader).substring(7);
+        //从token解析出用户名
+        String username=jwtTokenUtil.getUsernameFromToken(token);
+        return ResponseEntity.ok(myhomeService.findCinformation(username));
+    }
 
 
 }

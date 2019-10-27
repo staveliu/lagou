@@ -21,4 +21,6 @@ public interface FounderMapper {
     @Select("select * from founder where companyid=#{companyid}")
     List<Founders> findFounderById(@Param("companyid") int companyid);
 
+    @Select("select * from founder where companyid=#{id}")
+    List<Founders> findFounder(int companyid);
 }
