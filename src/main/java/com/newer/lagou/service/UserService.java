@@ -14,4 +14,8 @@ public class UserService {
     public Users findByEmail(String email){
         return usersMapper.findByEmail(email);
     }
+
+    public int updateName(String name,int id){
+        return usersMapper.updateName(name,id);
+    }
 }

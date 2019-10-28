@@ -40,4 +40,7 @@ public interface UsersMapper {
 
     @Select("select id from users where email=#{username}")
     int findUserid(String username);
+
+    @Update("update users set name=#{name} where id=#{id}")
+    int updateName(@Param("name")String name,@Param("id")int id);
 }

@@ -40,4 +40,5 @@ public interface CompanyMapper {
 
     @Select("select stage,org,institutionid id from iinstitution where companyid=#{companyid}")
     List<Stage> findByCompanyid(int companyid);
+
 }

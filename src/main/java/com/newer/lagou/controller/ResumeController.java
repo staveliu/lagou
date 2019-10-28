@@ -6,6 +6,7 @@ import com.newer.lagou.security.JwtTokenUtil;
 import com.newer.lagou.security.domain.JwtUser;
 import com.newer.lagou.service.ResumeService;
 
+import com.newer.lagou.service.UserService;
 import com.newer.lagou.util.UploadImg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +23,8 @@ import java.io.*;
 @RestController
 @RequestMapping("/resume")
 public class ResumeController {
+    @Autowired
+    private UserService userService;
 
     @Autowired
     private ResumeService resumeService;
@@ -62,11 +65,11 @@ public class ResumeController {
                                              @RequestParam("state")String state,@RequestParam("exp")String exp,
                                              @RequestParam("img")String img,
                                              HttpServletRequest request){
-        System.out.println("信息修改");
         String token=request.getHeader(tokenHeader).substring(7);
         String username=jwtTokenUtil.getUsernameFromToken(token);
         JwtUser user=(JwtUser)userDetailsService.loadUserByUsername(username);
         resumeService.updateBasicInfo(name,sex,dergee,mobile,email,state,exp,user.getId());
+        userService.updateName(name,user.getId());
         //头像上传
         int fileName=resumeService.findResumeId(user.getId());
         //保存的绝对路径
